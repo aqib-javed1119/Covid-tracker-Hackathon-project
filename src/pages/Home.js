@@ -132,7 +132,7 @@ function Home() {
   ];
 
   return (
-    <div class="container">
+    <div class="container" style={{ marginTop: "50px", marginBottom: "50px" }}>
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
         <Loader size={50} color={"green"} loading={loading} />
