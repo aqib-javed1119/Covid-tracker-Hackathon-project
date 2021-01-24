@@ -6,9 +6,10 @@ nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 10vh;
-  background: #231f20;
+  min-height: 5vh;
+  background: #424242;
   color: white;
+  font-family: "Roboto";
 }
 
 .nav-links {
@@ -28,7 +29,8 @@ footer {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  min-height: 15vh;
-  background: #231f20;
+  min-height: 5vh;
+  background: #424242;
   color: white;
+  font-family: "Roboto";
 }

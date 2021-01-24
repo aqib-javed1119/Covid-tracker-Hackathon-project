@@ -3,10 +3,8 @@ import "../css/App.css";
 
 function Footer() {
   return (
-    <footer>
-      <div>
-        Copyright © 2020 COVID-19 Live Now. All Rights Reserved. #StaySafe
-      </div>
+    <footer className="fixed-bottom">
+      <div>CUNY Hackathon 2021</div>
     </footer>
   );
 }

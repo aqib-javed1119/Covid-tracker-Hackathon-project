@@ -1,32 +1,30 @@
 import React, { useEffect, useState } from "react";
+import "../css/card.css";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 import Columns from "react-columns";
 import Form from "react-bootstrap/Form";
+import ListGroup from "react-bootstrap/ListGroup";
 import NumberFormat from "react-number-format";
-import ReactTooltip from "react-tooltip";
-import RingLoader from "react-spinners/RingLoader";
-import Toggle from "react-toggle";
-import "react-toggle/style.css";
+import Loader from "react-spinners/PulseLoader";
 
 function Home() {
   const [latest, setLatest] = useState([]);
   const [results, setResults] = useState([]);
   const [searchCountries, setSearchCountries] = useState("");
   const [loading, setLoading] = useState(true);
-  const [darkTheme, setDarkTheme] = useState(false);
 
   useEffect(() => {
     axios
       .all([
-        axios.get("https://corona.lmao.ninja/v2/all"),
-        axios.get("https://corona.lmao.ninja/v2/countries"),
+        axios.get("https://disease.sh/v3/covid-19/all"),
+        axios.get("https://disease.sh/v3/covid-19/countries"),
       ])
-      .then((responseArr) => {
-        setLatest(responseArr[0].data);
-        setResults(responseArr[1].data);
+      .then((res) => {
+        setLatest(res[0].data);
+        setResults(res[1].data);
         setLoading(false);
       })
       .catch((err) => {
@@ -43,25 +41,81 @@ function Home() {
       : item;
   });
 
+  const cardStyle = {
+    margin: "30px auto",
+    width: "18rem",
+    border: "none",
+    borderRadius: "3px",
+    backgroundColor: "#e3e3e3",
+    height: "40rem",
+  };
+
   const countries = filterCountries.map((data, i) => {
     return (
-      <Card
-        key={i}
-        bg={darkTheme ? "dark" : "light"}
-        text={darkTheme ? "light" : "dark"}
-        className="text-center"
-        style={{ margin: "10px" }}
-      >
-        <Card.Img variant="top" src={data.countryInfo.flag} />
+      <Card key={i} className="text-center shadow" style={cardStyle}>
+        <Card.Img variant="top" src={data.countryInfo.flag} height="180" />
         <Card.Body>
-          <Card.Title>{data.country}</Card.Title>
-          <Card.Text>Cases {data.cases}</Card.Text>
-          <Card.Text>Deaths {data.deaths}</Card.Text>
-          <Card.Text>Recovered {data.recovered}</Card.Text>
-          <Card.Text>Today's cases {data.todayCases}</Card.Text>
-          <Card.Text>Today's deaths {data.todayDeaths}</Card.Text>
-          <Card.Text>Active {data.active}</Card.Text>
-          <Card.Text>Critical {data.critical}</Card.Text>
+          <Card.Header className="font-weight-bold">
+            {data.country.toUpperCase()}
+          </Card.Header>
+          <ListGroup variant="flush" className="bg-transparent">
+            <ListGroup.Item className="bg-transparent">
+              Cases:{" "}
+              <NumberFormat
+                value={data.cases}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </ListGroup.Item>
+            <ListGroup.Item className="bg-transparent">
+              Deaths:{" "}
+              <NumberFormat
+                value={data.deaths}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </ListGroup.Item>
+            <ListGroup.Item className="bg-transparent">
+              Recoveries:{" "}
+              <NumberFormat
+                value={data.recovered}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </ListGroup.Item>
+            <ListGroup.Item className="bg-transparent">
+              Today's cases:{" "}
+              <NumberFormat
+                value={data.todayCases}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </ListGroup.Item>
+            <ListGroup.Item className="bg-transparent">
+              Today's deaths:{" "}
+              <NumberFormat
+                value={data.todayDeaths}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </ListGroup.Item>
+            <ListGroup.Item className="bg-transparent">
+              Active:{" "}
+              <NumberFormat
+                value={data.active}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </ListGroup.Item>
+            <ListGroup.Item className="bg-transparent">
+              Critical:{" "}
+              <NumberFormat
+                value={data.critical}
+                displayType={"text"}
+                thousandSeparator={true}
+              />
+            </ListGroup.Item>
+          </ListGroup>
         </Card.Body>
       </Card>
     );
@@ -78,51 +132,31 @@ function Home() {
     },
   ];
 
-  const handleDarkThemeChange = () => {
-    setDarkTheme(!darkTheme);
-  };
-
   return (
-    <div
-      style={{
-        backgroundColor: darkTheme ? "black" : "white",
-        color: darkTheme ? "white" : "black",
-      }}
-    >
+    <div class="container">
       <br />
       <div style={{ display: "flex", justifyContent: "center" }}>
-        <RingLoader size={50} color={"green"} loading={loading} />
+        <Loader size={50} color={"green"} loading={loading} />
       </div>
       <br />
       <h2
-        data-tip="Last modified date: 16/05/2020 - v2.2"
-        style={{ textAlign: "center" }}
+        className="font-weight-bold"
+        style={{
+          textAlign: "center",
+          textShadow:
+            "1px 0px 1px #ccc, 0px 1px 1px #eee, 2px 1px 1px #ccc, 1px 2px 1px #eee,3px 2px 1px #ccc, 2px 3px 1px #eee,4px 3px 1px #ccc, 3px 4px 1px #eee,5px 4px 1px #ccc, 4px 5px 1px #eee,6px 5px 1px #ccc, 5px 6px 1px #eee,7px 6px 1px #ccc;",
+        }}
       >
-        COVID-19 Live Now
+        Recent COVID Updates
       </h2>
-      <ReactTooltip effect="solid" />
-      <br />
-      <div style={{ textAlign: "center" }}>
-        <Toggle
-          defaultChecked={false}
-          icons={{
-            checked: "🌜",
-            unchecked: "🌞",
-          }}
-          onChange={handleDarkThemeChange}
-        />
-      </div>
-      <br />
       <CardDeck>
         <Card
-          bg="secondary"
           text="white"
-          className="text-center"
-          style={{ margin: "10px" }}
+          className="text-center border-none shadow rounded-0"
+          style={{ margin: "10px", backgroundColor: "#424242" }}
         >
           <Card.Body>
-            <Card.Title>Cases</Card.Title>
-            {/* <Card.Text>{latest.cases}</Card.Text> */}
+            <Card.Title>Total Cases</Card.Title>
             <NumberFormat
               value={latest.cases}
               displayType={"text"}
@@ -135,13 +169,12 @@ function Home() {
           </Card.Footer>
         </Card>
         <Card
-          bg="danger"
           text={"white"}
-          className="text-center"
-          style={{ margin: "10px" }}
+          className="text-center border-none shadow rounded-0"
+          style={{ margin: "10px", backgroundColor: "#424242" }}
         >
           <Card.Body>
-            <Card.Title>Deaths</Card.Title>
+            <Card.Title>Total Deaths</Card.Title>
             <Card.Text>
               {" "}
               <NumberFormat
@@ -157,13 +190,12 @@ function Home() {
           </Card.Footer>
         </Card>
         <Card
-          bg="success"
           text={"white"}
-          className="text-center"
-          style={{ margin: "10px" }}
+          className="text-center border-none shadow rounded-0"
+          style={{ margin: "10px", backgroundColor: "#424242" }}
         >
           <Card.Body>
-            <Card.Title>Recovered</Card.Title>
+            <Card.Title>Total Recoveries</Card.Title>
             <Card.Text>
               {" "}
               <NumberFormat
@@ -178,15 +210,36 @@ function Home() {
             <small>Last updated {lastUpdated}</small>
           </Card.Footer>
         </Card>
+        <Card
+          text="white"
+          className="text-center border-none shadow rounded-0"
+          style={{ margin: "10px", backgroundColor: "#424242" }}
+        >
+          <Card.Body>
+            <Card.Title>Total Tests</Card.Title>
+            <NumberFormat
+              value={latest.tests}
+              displayType={"text"}
+              thousandSeparator={true}
+              style={{ fontSize: "30px" }}
+            />
+          </Card.Body>
+          <Card.Footer>
+            <small>Last updated {lastUpdated}</small>
+          </Card.Footer>
+        </Card>
       </CardDeck>
       <br />
-      <Form>
+      <Form className="mx-auto d-block" style={{ outline: "none !important" }}>
         <Form.Group controlId="formGroupSearch">
           <Form.Control
-            bg="dark"
             type="text"
-            placeholder="Search for countries"
+            placeholder="Search Country here... Ex. USA"
             onChange={(e) => setSearchCountries(e.target.value)}
+            className="border-bottom border-top-0 border-right-0 border-left-0 rounded-0 mx-auto d-block"
+            style={{ color: "blue", width: "50%" }}
+            size={"sm"}
+            autoComplete="off"
           />
         </Form.Group>
       </Form>

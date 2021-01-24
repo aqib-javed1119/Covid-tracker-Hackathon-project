@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 
 function Nav() {
   return (
-    <nav>
+    <nav className="fixed-top">
       <Link style={{ color: "white", textDecoration: "none" }} to="/">
-        <div style={{ fontSize: "30px" }}>COVID-19 TRACKER</div>
+        <div style={{ fontSize: "1rem" }}>COVID Tracker</div>
       </Link>
       <ul className="nav-links">
         <Link
@@ -18,7 +18,7 @@ function Nav() {
           }}
           to="/symptom"
         >
-          <li>Symptom</li>
+          <li>Symptoms</li>
         </Link>
         <Link
           style={{
@@ -28,12 +28,6 @@ function Nav() {
             marginRight: "40px",
           }}
           to="/graph"
-        >
-          <li>Graph</li>
-        </Link>
-        <Link
-          style={{ color: "white", textDecoration: "none", marginTop: "10px" }}
-          to="/about"
         >
           <li>About</li>
         </Link>
