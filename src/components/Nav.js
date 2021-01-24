@@ -27,7 +27,7 @@ function Nav() {
             marginTop: "10px",
             marginRight: "40px",
           }}
-          to="/graph"
+          to="/about"
         >
           <li>About</li>
         </Link>

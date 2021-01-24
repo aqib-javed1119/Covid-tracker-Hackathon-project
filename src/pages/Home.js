@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "../css/card.css";
 import Card from "react-bootstrap/Card";
 import CardDeck from "react-bootstrap/CardDeck";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -47,7 +46,7 @@ function Home() {
     border: "none",
     borderRadius: "3px",
     backgroundColor: "#e3e3e3",
-    height: "40rem",
+    height: "38rem",
   };
 
   const countries = filterCountries.map((data, i) => {

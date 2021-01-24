@@ -6,7 +6,7 @@ import { IconContext } from "react-icons/lib";
 
 function About() {
   return (
-    <div>
+    <div className="container">
       <h2
         style={{
           textAlign: "center",
