@@ -6,7 +6,7 @@ import { IconContext } from "react-icons/lib";
 
 function About() {
   return (
-    <div style={{ fontFamily: "manrope" }}>
+    <div>
       <h2
         style={{
           textAlign: "center",
@@ -22,9 +22,9 @@ function About() {
           textAlign: "center",
         }}
       >
-        <h3>
+        <p>
           Hi! Welcome to our COVID-19 Tracker, made for the 2021 CUNY Hackathon.
-        </h3>
+        </p>
         <p>We are:</p>
 
         {/* Team Cards */}
