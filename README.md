@@ -5,4 +5,6 @@
 ###  • The website displays the mortality rates , recovery rates , effected population of every country by using an API to collect the covid-19 data .
 ###  • The website provides the information regarding symptoms and treatments of covid-19 . 
 
-###  • The Website layout can be seen from the website below =
+###  • The Website layout can be seen below = 
+
+        https://github.com/aqib-javed1119/covid-tracker/blob/master/COVID%20Tracker.gif 
