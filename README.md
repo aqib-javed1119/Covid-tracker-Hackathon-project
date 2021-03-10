@@ -6,5 +6,5 @@
 ###  • The website provides the information regarding symptoms and treatments of covid-19 . 
 
 ###  • The Website layout can be seen below = 
-  <p align = "center" ><img src="https://github.com/aqib-javed1119/covid-tracker/blob/master/COVID%20Tracker.gif"width="500" height="500" /> </p>
+  <p align = "center" ><img src="https://github.com/aqib-javed1119/covid-tracker/blob/master/COVID%20Tracker.gif"width="500" height="250" /> </p>
         
