@@ -1,5 +1,5 @@
 
-# <p align = "center" > Covid-19 statistics tracker</p>   
+# <p align = "center" > Covid-19 statistics tracker website</p>   
 
 
 ###  • The website displays the mortality rates , recovery rates , effected population of every country by using an API to collect the covid-19 data .
